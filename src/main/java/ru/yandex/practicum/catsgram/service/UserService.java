@@ -21,6 +21,10 @@ public class UserService {
         return usersEmail.values();
     }
 
+    public Optional<User> findById(long id) {
+        return Optional.ofNullable(usersId.get(id));
+    }
+
     public User create(User user) {
         if (user.getEmail().isBlank()) {
             throw new ConditionsNotMetException("Имейл должен быть указан");
@@ -60,9 +64,6 @@ public class UserService {
         return existUser;
     }
 
-    public Optional<User> findUserById(long id) {
-        return Optional.ofNullable(usersId.get(id));
-    }
     private long getNextId() {
         return ++idCounter;
     }
